@@ -8,11 +8,13 @@
   
   if(isset($_POST[ 'btn-signup' ]))
   {
-    $uname = mysql_real_escape_string($_POST['uname']);
+    $fname = mysql_real_escape_string($_POST['fname']);
+    $lname = mysql_real_escape_string($_POST['lname']);
     $email = mysql_real_escape_string($_POST['email']);
     $upass = md5(mysql_real_escape_string($_POST['pass']));
+    $type  = mysql_real_escape_string($_POST['type']);
     
-    if(mysql_query("INSERT INTO users(username,email,password) VALUES('$uname','$email','$upass')"))
+    if(mysql_query("INSERT INTO users(fname, lname, email, password, type) VALUES('$fname', '$lname','$email','$upass','$type')"))
     {
       ?>
       <script>alert('successfully registered ');</script>
@@ -43,13 +45,26 @@
         <form method="post">
           <table align="center" width="30%" border="0">
             <tr>
-              <td><input type="text" name="uname" placeholder="User Name" required /></td>
+              <td><input type="text" name="fname" placeholder="First Name" required /></td>
+            </tr>
+            <tr>
+              <td><input type="text" name="lname" placeholder="Last Name" required /></td>
             </tr>
             <tr>
               <td><input type="email" name="email" placeholder="Your Email" required /></td>
             </tr>
             <tr>
               <td><input type="password" name="pass" placeholder="Your Password" required /></td>
+            </tr>
+            <tr>
+              <td>
+                <select name="type">
+                  <option value="Nominator">Nominator</option>
+                  <option value="Nominee">Nominee</option>
+                  <option value="Member">GC Member</option>
+                  <option value="Admin">System Admin</option>
+                </select>
+              </td>
             </tr>
             <tr>
               <td><button type="submit" name="btn-signup">Sign Me Up</button></td>
