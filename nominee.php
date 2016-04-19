@@ -89,7 +89,7 @@
   
   if (isset($_POST['btn-finished'])) {
     
-    if(mysql_query("UPDATE nomination SET complete=1 WHERE eeID=$eeID"))
+    if(mysql_query("UPDATE nomination SET complete = '1' WHERE eeID=$eeID"))
     {
       ?>
       <script>alert("Updated nomination completion");</script>

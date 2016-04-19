@@ -200,7 +200,7 @@
             <?php
               if ($nomRow['complete'] == 0)
               {
-                print("");
+                print("<td><h3>Nominee has not yet completed info</h3></td>");
               }
               else if ($nomRow['complete'] == 1)
               {
@@ -211,7 +211,6 @@
                 print("<td><button type='submit' name='btn-unverify'>Un-Verfy</button></td>");
               }
             ?>
-            
           </tr>
         </table>
       <form>
