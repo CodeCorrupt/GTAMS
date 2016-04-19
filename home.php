@@ -15,7 +15,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Welcome - <?php echo $userRow['username']; ?></title>
+    <title>Welcome - <?php print($userRow['fname']); ?></title>
     <link rel="stylesheet" href="CSS/style.css" type="text/css" />
   </head>
 
@@ -26,7 +26,9 @@
       </div>
       <div id="right">
         <div id="content">
-          hi <?php echo $userRow['username']; ?>&nbsp;<a href="logout.php?logout">Sign Out</a>
+          Hi <?php echo $userRow['fname']; ?>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="logout.php?logout">Sign Out</a>
         </div>
       </div>
     </div>

@@ -1,41 +1,45 @@
 <?php
   session_start();
+  // If the user is already logged in then redirect them to their home page
   if(isset($_SESSION['user']) != "")
   {
     header("Location: home.php");
   }
+  // We will need the db connection
   include_once 'dbConnect.php';
   
+  // If the form has been submitted thenthe post of 'btn-signup' will be set
   if(isset($_POST[ 'btn-signup' ]))
   {
+    // Extract the elements of the post request
     $fname = mysql_real_escape_string($_POST['fname']);
     $lname = mysql_real_escape_string($_POST['lname']);
     $email = mysql_real_escape_string($_POST['email']);
     $upass = md5(mysql_real_escape_string($_POST['pass']));
     $type  = mysql_real_escape_string($_POST['type']);
     
+    // Send that shit to MySQL
     if(mysql_query("INSERT INTO users(fname, lname, email, password, type) VALUES('$fname', '$lname','$email','$upass','$type')"))
     {
       ?>
-      <script>alert('successfully registered ');</script>
+      <script>alert('Successfully registered!');</script>
       <?php
     }
     else
     {
       ?>
-      <script>alert('error while registering you...');</script>
+      <script>alert('Error while registering you...');</script>
       <?php
     }
   }
 ?>
-
 
 <!-- HTML Stuff! -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>GTAMS - Registration</title>
+    <title>Registration</title>
     <link rel="stylesheet" href="CSS/style.css" type="text/css" />
   </head>
   
