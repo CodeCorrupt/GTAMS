@@ -51,9 +51,11 @@
             <tr>
               <td><button type="submit" name="btn-login">Sign In</button></td>
             </tr>
+            <!--
             <tr>
               <td><a href="register.php">Sign Up Here</a></td>
             </tr>
+            -->
           </table>
         </form>
       </div>
