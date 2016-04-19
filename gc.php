@@ -95,7 +95,7 @@
           print("<td>Average Score</td>");
           print("</tr>");
           
-          $nomInfo = mysql_query("SELECT n.ID, ou.lname, eu.lname, n.eeRanking, (e.num_sem_grad = 0)
+          $nomInfo = mysql_query("SELECT n.ID, ou.lname, eu.lname, n.eeRanking, (e.num_sem_grad = 0), eu.user_id
                                   FROM nomination n
                                   INNER JOIN users ou ON ou.user_id = n.orID
                                   INNER JOIN users eu ON eu.user_id = n.eeID
@@ -106,7 +106,7 @@
           while($nomInfoRow = mysql_fetch_row($nomInfo))
           {
             print("<tr>");
-            print("<td>$nomInfoRow[1]</td><td>$nomInfoRow[2]</td><td>$nomInfoRow[3]</td><td>$nomInfoRow[4]</td>");
+            print("<td>$nomInfoRow[1]</td><td><a href='nominee_info.php?eeid=$nomInfoRow[5]'>$nomInfoRow[2]</a></td><td>$nomInfoRow[3]</td><td>$nomInfoRow[4]</td>");
             $memScore = mysql_query("SELECT mss.score, mids.userID
                                      FROM (SELECT mi.userID
                                            FROM member_info mi

@@ -17,9 +17,8 @@
     header("Location: index.php");
   }
   // Get the user's info so we can use it in the page
-  $res = mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
-  $userRow = mysql_fetch_array($res);
-  $orID = $userRow['user_id'];
+  $userRow = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']));
+  $orID = $_SESSION['user'];
   
   /****************************************************
   *This below is used to work with forms and DB calls *
@@ -144,6 +143,23 @@
       <input type="hidden" name="body" value= "<?php echo $ehtml ?>" />
       </form>
       
+      <table>
+        <tr>
+          <td><h3>Graduates you've nominated</h3></td>
+        </tr>
+        <?php
+          $nominations = mysql_query("SELECT n.eeID, u.fname, u.lname, n.eeRanking
+                                      FROM nomination n, users u
+                                      WHERE n.eeID = u.user_id
+                                        AND n.orID = '$orID'");
+          while($row = mysql_fetch_row($nominations))
+          {
+            print("<tr>");
+            print("  <td><a href='nominee_info.php?eeid=$row[0]'>$row[1] $row[2]</a></td>");
+            print("<tr>");
+          }
+        ?>
+      </table>
       
       <form method='post'>
         <table align="center" width="30%" border="0">

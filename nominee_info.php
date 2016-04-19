@@ -7,7 +7,7 @@
   $eeID = $_GET['eeid'];
 
   $userRow = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']));
-  if($userRow['type'] != 'Nominator')
+  if($userRow['type'] == 'Nominee')
   {
     header("Location: index.php");
   }
