@@ -6,8 +6,22 @@
   {
     header("Location: index.php");
   }
-  $res = mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
-  $userRow = mysql_fetch_array($res);
+  $userRow = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']));
+  $type = $userRow['type'];
+  switch ($type) {
+    case 'Admin':
+        header("Location: sys_admin.php");
+        break;
+    case 'Member':
+        header("Location: gc.php");
+        break;
+    case 'Nominee':
+        header("Location: nominee.php");
+        break;
+    case 'Nominator':
+        header("Location: nominator.php");
+        break;
+}
 ?>
 
 <!-- HTML stuff! -->

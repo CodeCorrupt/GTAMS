@@ -136,7 +136,7 @@
 <body>
   <div id="header">
       <div id="left">
-        <h1>Home</h1>
+        <h1>Administrator</h1>
       </div>
       <div id="right">
         <div id="content">
